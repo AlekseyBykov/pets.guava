@@ -20,7 +20,7 @@ public class MapJoinerTest {
 	}
 
 	@Test
-	public void testFilterWhitePapers() {
+	public void testJoinKeyValuePairsFromMapToString() {
 		map = Maps.newLinkedHashMap();
 		map.put("key 1", "value 1");
 		map.put("key 2", "value 2");
