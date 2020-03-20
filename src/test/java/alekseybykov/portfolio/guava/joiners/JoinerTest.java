@@ -2,7 +2,7 @@ package alekseybykov.portfolio.guava.joiners;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -13,20 +13,40 @@ import static org.junit.Assert.assertThat;
 
 public class JoinerTest {
 
-	private List<String> strings;
+	private static List<String> strings;
 
-	@Before
-	public void setup() {
-		strings = Lists.newArrayList();
+	@BeforeClass
+	public static void setup() {
+		strings = Lists.newArrayList(Arrays.asList("string 1", "string 2", "string 3", null, "string 4"));
 	}
 
 	@Test
 	public void testJoinStringsFromListWithSkipNulls() {
-		strings.addAll(Arrays.asList("string 1", "string 2", "string 3", null, "string 4"));
 		String expectedString = "string 1|string 2|string 3|string 4";
 
 		Joiner joiner = Joiner.on("|").skipNulls();
 		String actualString = joiner.join(strings);
+
+		assertThat(actualString, is(expectedString));
+	}
+
+	@Test
+	public void testJoinStringsFromListWithReplacementForNulls() {
+		String expectedString = "string 1|string 2|string 3|EMPTY|string 4";
+
+		Joiner joiner = Joiner.on("|").useForNull("EMPTY");
+		String actualString = joiner.join(strings);
+
+		assertThat(actualString, is(expectedString));
+	}
+
+	@Test
+	public  void testJoinStringsFromListAndAppendToStringBuilder() {
+		String expectedString = "string 1|string 2|string 3|NO VALUE|string 4";
+
+		StringBuilder stringBuilder = new StringBuilder();
+		Joiner joiner = Joiner.on("|").useForNull("NO VALUE");
+		String actualString = joiner.appendTo(stringBuilder, strings).toString();
 
 		assertThat(actualString, is(expectedString));
 	}
