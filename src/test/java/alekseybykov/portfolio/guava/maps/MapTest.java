@@ -1,5 +1,6 @@
 package alekseybykov.portfolio.guava.maps;
 
+import alekseybykov.portfolio.guava.utils.Utils;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
@@ -13,7 +14,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MapTest {
 
-	private static ImmutableMap<String, String> firstMap = new ImmutableMap.Builder<String, String>()
+	private static final ImmutableMap<String, String> firstMap = new ImmutableMap.Builder<String, String>()
 		.put("key 1", "value 1")
 		.put("key 2", "value 2")
 		.put("key 3", "value 3")
@@ -21,7 +22,7 @@ public class MapTest {
 
 	@Test
 	public void testMergeTwoMaps() {
-		ImmutableMap<String, String> secondMap = mergeMaps(firstMap, new HashMap<String, String>() {{
+		final ImmutableMap<String, String> secondMap = Utils.mergeMaps(firstMap, new HashMap<String, String>() {{
 			put("key 1", "11");
 			put("key 2", "22");
 			put("key 4", "4");
@@ -35,13 +36,5 @@ public class MapTest {
 				"key 4", "4"
 			))
 		);
-	}
-
-	private static ImmutableMap<String, String> mergeMaps(Map<String, String> leftMap, Map<String, String> rightMap) {
-		MapDifference<String, String> diff = Maps.difference(leftMap, rightMap);
-		return ImmutableMap.<String, String>builder()
-				.putAll(diff.entriesOnlyOnLeft())
-				.putAll(rightMap)
-				.build();
 	}
 }
