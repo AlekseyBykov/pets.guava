@@ -2,8 +2,6 @@ package alekseybykov.portfolio.guava.maps;
 
 import alekseybykov.portfolio.guava.utils.Utils;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.MapDifference;
-import com.google.common.collect.Maps;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
