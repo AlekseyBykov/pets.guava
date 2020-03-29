@@ -1,15 +1,19 @@
 package alekseybykov.portfolio.guava.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 public class Library {
 
 	private String name;
-	private Set<Book> books = new HashSet<>();
+	private List<Book> books;
 
 	public Library(String name) {
 		this.name = name;
+	}
+
+	public Library(String name, List<Book> books) {
+		this.name = name;
+		this.books = books;
 	}
 
 	public String getName() {
@@ -20,11 +24,11 @@ public class Library {
 		this.name = name;
 	}
 
-	public Set<Book> getBooks() {
+	public List<Book> getBooks() {
 		return books;
 	}
 
-	public void setBooks(Set<Book> books) {
+	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
 }
