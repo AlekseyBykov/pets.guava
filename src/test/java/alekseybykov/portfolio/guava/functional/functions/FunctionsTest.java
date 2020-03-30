@@ -16,6 +16,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
+// Function interface is used for transformations
 public class FunctionsTest {
 
 	private static Map libraries;
