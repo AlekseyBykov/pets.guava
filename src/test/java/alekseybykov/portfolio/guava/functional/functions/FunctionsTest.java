@@ -1,10 +1,14 @@
 package alekseybykov.portfolio.guava.functional.functions;
 
+import alekseybykov.portfolio.guava.functions.RandomIntFunction;
 import alekseybykov.portfolio.guava.model.Book;
 import alekseybykov.portfolio.guava.model.Library;
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.base.Joiner;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -13,8 +17,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 // Function interface is used for transformations
 public class FunctionsTest {
@@ -60,5 +67,37 @@ public class FunctionsTest {
 		// the same
 		assertEquals("book1 book2", composed.apply("LIB1"));
 		assertEquals("book1 book2", joinBookNames.apply(lookupLibraryByKey.apply("LIB1")));
+	}
+
+	@Test
+	public void testMemoizeMethodCallWithoutExpiration() throws ExecutionException {
+		RandomIntFunction randomIntFunction = new RandomIntFunction();
+		LoadingCache<Integer, Integer> memoizedFunction =
+				CacheBuilder.newBuilder().build(CacheLoader.from(randomIntFunction));
+
+		// result is persisted (memoized) in cache as value, argument represents key
+		Integer randomInt = memoizedFunction.get(100);
+
+		assertEquals(randomInt, memoizedFunction.get(100));
+		assertEquals(randomInt, memoizedFunction.get(100));
+		assertEquals(randomInt, memoizedFunction.get(100));
+		assertEquals(randomInt, memoizedFunction.get(100));
+	}
+
+	@Test
+	public void testMemoizeMethodCallWithExpiration() throws ExecutionException, InterruptedException {
+		RandomIntFunction randomIntFunction = new RandomIntFunction();
+		LoadingCache<Integer, Integer> memoizedFunction = CacheBuilder.newBuilder()
+				.expireAfterAccess(5, TimeUnit.SECONDS)
+				.build(CacheLoader.from(randomIntFunction));
+
+		// result is persisted (memoized) in cache for 5 seconds
+		Integer randomInt = memoizedFunction.get(100);
+
+		Thread.sleep(15000);
+
+		// re-generate new random int
+		assertNotEquals(randomInt, memoizedFunction.get(100));
+		assertNotEquals(randomInt, memoizedFunction.get(100));
 	}
 }
