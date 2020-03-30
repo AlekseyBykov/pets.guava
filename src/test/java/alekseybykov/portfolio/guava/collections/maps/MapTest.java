@@ -1,4 +1,4 @@
-package alekseybykov.portfolio.guava.maps;
+package alekseybykov.portfolio.guava.collections.maps;
 
 import alekseybykov.portfolio.guava.utils.Utils;
 import com.google.common.collect.ImmutableMap;
