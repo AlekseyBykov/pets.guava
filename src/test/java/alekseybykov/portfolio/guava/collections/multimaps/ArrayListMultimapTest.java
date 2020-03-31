@@ -1,4 +1,4 @@
-package alekseybykov.portfolio.guava.multimaps;
+package alekseybykov.portfolio.guava.collections.multimaps;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
