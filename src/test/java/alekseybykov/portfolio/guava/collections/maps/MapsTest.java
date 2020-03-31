@@ -11,11 +11,13 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class MapsTest {
 
@@ -39,8 +41,8 @@ public class MapsTest {
 		bookList = newArrayList(Arrays.asList(books));
 	}
 
-	@Test
-	public void testTransformList2Map() {
+	@Test(expected = UnsupportedOperationException.class)
+	public void testTransformList2ImmutableMapUsingKeysGenerator() {
 		Map<String, Book> bookMap = Maps.uniqueIndex(bookList.iterator(),
 			new Function<Book, String>() {
 				@Override
@@ -57,8 +59,46 @@ public class MapsTest {
 				"isbn 3", books[2]
 			))
 		);
+
+		Book book4 = new Book("book 4", "isbn 4");
+
+		bookMap.put("isbn 4", book4);
+		assertTrue( bookMap.get("isbn 4") == null && bookMap.size() == 3);
 	}
 
+	@Test
+	public void testTransformList2ImmutableMapUsingValuesGenerator() {
+		ImmutableMap<Book, String> bookMap = Maps.toMap(bookList.iterator(),
+			new Function<Book, String>() {
+				@Override
+				public String apply(Book book) {
+					return book.getIsbn(); // ISBN as value
+				}
+			}
+		);
+
+		assertTrue( bookMap.get(books[0]).equals("isbn 1")
+					&& bookMap.get(books[1]).equals("isbn 2")
+					&& bookMap.get(books[2]).equals("isbn 3")
+		            && bookMap.size() == 3);
+	}
+
+	@Test
+	public void testTransformSet2MapUsingValuesGenerator() {
+		Map<Book, String> bookMap = Maps.asMap(new HashSet<>(bookList),
+			new Function<Book, String>() {
+				@Override
+				public String apply(Book book) {
+					return book.getIsbn(); // ISBN as value
+				}
+			}
+		);
+
+		assertTrue( bookMap.get(books[0]).equals("isbn 1")
+		            && bookMap.get(books[1]).equals("isbn 2")
+		            && bookMap.get(books[2]).equals("isbn 3")
+		            && bookMap.size() == 3);
+	}
 
 	@Test
 	public void testMergeTwoMaps() {
