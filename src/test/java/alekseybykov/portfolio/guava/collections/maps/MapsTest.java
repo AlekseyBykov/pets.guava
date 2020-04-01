@@ -4,6 +4,7 @@ import alekseybykov.portfolio.guava.model.Book;
 import alekseybykov.portfolio.guava.utils.Utils;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
 import org.hamcrest.Matchers;
 import org.junit.BeforeClass;
@@ -27,6 +28,13 @@ public class MapsTest {
 		.put("key 3", "value 3")
 		.build();
 
+	private static final ImmutableMap<String, String> secondMap = new ImmutableMap.Builder<String, String>()
+		.put("key 1", "value 0")
+		.put("key 2", "value 2")
+		.put("key 3", "value 3")
+		.put("key 4", "value 4")
+		.build();
+
 	private static List<Book> bookList;
 	private static Book[] books;
 
@@ -40,6 +48,27 @@ public class MapsTest {
 
 		bookList = newArrayList(Arrays.asList(books));
 	}
+
+	@Test
+	public void testObtainCommonEntriesForTwoMaps() {
+		MapDifference<String, String> mapDifference = Maps.difference(firstMap, secondMap);
+		Map<String, String> commonEntries = mapDifference.entriesInCommon();
+
+		assertTrue(commonEntries.get("key 2").equals("value 2")
+		            && commonEntries.get("key 3").equals("value 3")
+					&& commonEntries.size() == 2);
+	}
+
+	@Test
+	public void testObtainValuesWithSameKeyFromTwoMaps() {
+		MapDifference<String, String> mapDifference = Maps.difference(firstMap, secondMap);
+		Map<String, MapDifference.ValueDifference<String>> commonEntries = mapDifference.entriesDiffering();
+
+		assertTrue(commonEntries.get("key 1").leftValue().equals("value 1")
+		           && commonEntries.get("key 1").rightValue().equals("value 0")
+		           && commonEntries.size() == 1);
+	}
+
 
 	@Test(expected = UnsupportedOperationException.class)
 	public void testTransformList2ImmutableMapUsingKeysGenerator() {
