@@ -4,6 +4,8 @@ import com.google.common.collect.HashBasedTable;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.Map;
+
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNull;
 import static junit.framework.TestCase.assertTrue;
@@ -39,5 +41,22 @@ public class HashBasedTableTest {
 
 		table1.remove(0, 0);
 		assertNull(table1.get(0, 0));
+	}
+
+	@Test
+	public void testObtainRowValueMapping() {
+		Map<Integer, String> column = table1.column(0);
+		assertEquals(2, column.size());
+		assertEquals(column.get(0), "row 0, column 0");
+		assertEquals(column.get(1), "row 1, column 0");
+	}
+
+	@Test
+	public void testObtainColumnValueMapping() {
+		Map<Integer, String> row = table1.row(1);
+		assertEquals(3, row.size());
+		assertEquals(row.get(0), "row 1, column 0");
+		assertEquals(row.get(1), "row 1, column 1");
+		assertEquals(row.get(2), "row 1, column 2");
 	}
 }
