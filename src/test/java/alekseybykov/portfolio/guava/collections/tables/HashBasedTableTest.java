@@ -1,0 +1,43 @@
+package alekseybykov.portfolio.guava.collections.tables;
+
+import com.google.common.collect.HashBasedTable;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNull;
+import static junit.framework.TestCase.assertTrue;
+
+public class HashBasedTableTest {
+
+	private static HashBasedTable<Integer, Integer, String> table1;
+
+	@BeforeClass
+	public static void setup() {
+		table1 = HashBasedTable.create();
+
+		table1.put(0, 0, "row 0, column 0");
+		table1.put(0, 1, "row 0, column 1");
+		table1.put(0, 2, "row 0, column 2");
+
+		table1.put(1, 0, "row 1, column 0");
+		table1.put(1, 1, "row 1, column 1");
+		table1.put(1, 2, "row 1, column 2");
+	}
+
+	@Test
+	public void testCoreOperations() {
+		HashBasedTable<Integer, Integer, String> table2 = HashBasedTable.create(table1);
+		assertEquals(table1, table2);
+
+		assertTrue(table1.contains(0, 0));
+		assertTrue(table1.containsColumn(2));
+		assertTrue(table1.containsRow(1));
+		assertTrue(table1.containsValue("row 1, column 1"));
+
+		assertEquals("row 0, column 2", table1.get(0, 2));
+
+		table1.remove(0, 0);
+		assertNull(table1.get(0, 0));
+	}
+}
