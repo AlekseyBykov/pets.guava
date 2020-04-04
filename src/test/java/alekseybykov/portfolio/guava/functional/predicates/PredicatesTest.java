@@ -30,19 +30,19 @@ public class PredicatesTest {
 
 	@Before
 	public void setup() {
-		list = Lists.newArrayList("A", "B", "c", "dE", "fa");
+		list = Lists.newArrayList("A", "B", "c", "a");
 	}
 
 	@Test
 	public void testFilterStringsInUpperCase() {
 		assertThat(Collections2.filter(list, upperCasePredicate), containsInAnyOrder("A", "B"));
-		assertThat(Collections2.filter(list, Predicates.not(lowerCasePredicate)), containsInAnyOrder("A", "B", "dE"));
+		assertThat(Collections2.filter(list, Predicates.not(lowerCasePredicate)), containsInAnyOrder("A", "B"));
 	}
 
 	@Test
 	public void testFilterStringsInLowerCase() {
-		assertThat(Collections2.filter(list, lowerCasePredicate), contains("c", "fa"));
-		assertThat(Collections2.filter(list, Predicates.not(upperCasePredicate)), containsInAnyOrder("c", "fa", "dE"));
+		assertThat(Collections2.filter(list, lowerCasePredicate), contains("c", "a"));
+		assertThat(Collections2.filter(list, Predicates.not(upperCasePredicate)), containsInAnyOrder("c", "a"));
 	}
 
 	@Test
@@ -54,35 +54,35 @@ public class PredicatesTest {
 	@Test
 	public void testFilterStringsInAllCases() {
 		Predicate<String> allCases = Predicates.or(lowerCasePredicate, upperCasePredicate);
-		assertThat(Collections2.filter(list, allCases), containsInAnyOrder("A", "B", "c", "fa"));
+		assertThat(Collections2.filter(list, allCases), containsInAnyOrder("A", "B", "c", "a"));
 	}
 
 	@Test
 	public void testFilterStringsUsingIterable() {
 		Iterable<String> strings = Iterables.filter(list, Predicates.containsPattern("a"));
-		assertThat(strings, contains("fa"));
+		assertThat(strings, contains("a"));
 		assertThat(strings, not(contains("A")));
 
 		// not a live view
-		list.add("a");
-		assertThat(strings, not(contains("a")));
+		list.add("aa");
+		assertThat(strings, not(contains("aa")));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testFilterStringsUsingCollections() {
 		// returns live view of the list
 		Collection<String> strings = Collections2.filter(list, Predicates.containsPattern("a"));
-		assertThat(strings, contains("fa"));
+		assertThat(strings, contains("a"));
 		assertThat(strings, not(contains("A")));
 
 		assertThat(strings.size(), is(1));
 
 		// changes in the original list will affects to filtered result
-		list.add("a");
+		list.add("aa");
 		assertThat(strings.size(), is(2));
 
 		// the restriction of predicate is preserved
-		strings.add("a");
+		strings.add("aaa");
 		strings.add("b");
 	}
 }
