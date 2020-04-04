@@ -5,12 +5,15 @@ import alekseybykov.portfolio.guava.predicates.UpperCasePredicate;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Collection;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
@@ -20,26 +23,26 @@ import static org.hamcrest.collection.IsEmptyCollection.empty;
 // Predicate interface is used for filtering
 public class PredicatesTest {
 
-	private static List<String> list = Lists.newArrayList("A", "B", "c");
+	private static List<String> list;
 
-	private static final UpperCasePredicate upperCasePredicate = new UpperCasePredicate();
-	private static final LowerCasePredicate lowerCasePredicate = new LowerCasePredicate();
+	private final UpperCasePredicate upperCasePredicate = new UpperCasePredicate();
+	private final LowerCasePredicate lowerCasePredicate = new LowerCasePredicate();
 
-	@BeforeClass
-	public static void setup() {
-		list = Lists.newArrayList("A", "B", "c");
+	@Before
+	public void setup() {
+		list = Lists.newArrayList("A", "B", "c", "dE", "fa");
 	}
 
 	@Test
 	public void testFilterStringsInUpperCase() {
-		assertThat(Collections2.filter(list, upperCasePredicate), contains("A", "B"));
-		assertThat(Collections2.filter(list, Predicates.not(lowerCasePredicate)), contains("A", "B"));
+		assertThat(Collections2.filter(list, upperCasePredicate), containsInAnyOrder("A", "B"));
+		assertThat(Collections2.filter(list, Predicates.not(lowerCasePredicate)), containsInAnyOrder("A", "B", "dE"));
 	}
 
 	@Test
 	public void testFilterStringsInLowerCase() {
-		assertThat(Collections2.filter(list, lowerCasePredicate), contains("c"));
-		assertThat(Collections2.filter(list, Predicates.not(upperCasePredicate)), contains("c"));
+		assertThat(Collections2.filter(list, lowerCasePredicate), contains("c", "fa"));
+		assertThat(Collections2.filter(list, Predicates.not(upperCasePredicate)), containsInAnyOrder("c", "fa", "dE"));
 	}
 
 	@Test
@@ -51,6 +54,35 @@ public class PredicatesTest {
 	@Test
 	public void testFilterStringsInAllCases() {
 		Predicate<String> allCases = Predicates.or(lowerCasePredicate, upperCasePredicate);
-		assertThat(Collections2.filter(list, allCases), containsInAnyOrder(list.toArray()));
+		assertThat(Collections2.filter(list, allCases), containsInAnyOrder("A", "B", "c", "fa"));
+	}
+
+	@Test
+	public void testFilterStringsUsingIterable() {
+		Iterable<String> strings = Iterables.filter(list, Predicates.containsPattern("a"));
+		assertThat(strings, contains("fa"));
+		assertThat(strings, not(contains("A")));
+
+		// not a live view
+		list.add("a");
+		assertThat(strings, not(contains("a")));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testFilterStringsUsingCollections() {
+		// returns live view of the list
+		Collection<String> strings = Collections2.filter(list, Predicates.containsPattern("a"));
+		assertThat(strings, contains("fa"));
+		assertThat(strings, not(contains("A")));
+
+		assertThat(strings.size(), is(1));
+
+		// changes in the original list will affects to filtered result
+		list.add("a");
+		assertThat(strings.size(), is(2));
+
+		// the restriction of predicate is preserved
+		strings.add("a");
+		strings.add("b");
 	}
 }
