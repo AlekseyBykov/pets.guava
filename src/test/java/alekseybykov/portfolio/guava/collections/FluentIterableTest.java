@@ -45,6 +45,7 @@ public class FluentIterableTest {
 				}
 			});
 
+		assertThat(Iterables.size(booksFilteredByPages), is(2));
 		assertThat(Iterables.contains(booksFilteredByPages, books[0]), is(true));
 		assertThat(Iterables.contains(booksFilteredByPages, books[2]), is(true));
 	}
