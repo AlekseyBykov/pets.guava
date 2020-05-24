@@ -1,7 +1,9 @@
 package alekseybykov.portfolio.guava.collections.multimaps;
 
+import alekseybykov.portfolio.guava.PerformnceAuditorRule;
 import com.google.common.collect.HashMultimap;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.hasItems;
@@ -9,6 +11,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
 public class HashMultimapTest {
+	@Rule
+	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();
 
 	private static HashMultimap<String, Integer> multimap = HashMultimap.create();
 

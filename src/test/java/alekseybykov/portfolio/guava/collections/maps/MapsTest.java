@@ -1,5 +1,6 @@
 package alekseybykov.portfolio.guava.collections.maps;
 
+import alekseybykov.portfolio.guava.PerformnceAuditorRule;
 import alekseybykov.portfolio.guava.model.Book;
 import alekseybykov.portfolio.guava.utils.Utils;
 import com.google.common.base.Function;
@@ -8,6 +9,7 @@ import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
 import org.hamcrest.Matchers;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -21,6 +23,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class MapsTest {
+	@Rule
+	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();
 
 	private static final ImmutableMap<String, String> firstMap = new ImmutableMap.Builder<String, String>()
 		.put("key 1", "value 1")

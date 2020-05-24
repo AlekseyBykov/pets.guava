@@ -1,12 +1,15 @@
 package alekseybykov.portfolio.guava;
 
 import com.google.common.collect.Range;
+import org.junit.Rule;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 
 public class RangeTest {
+	@Rule
+	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();
 
 	@Test
 	public void testClosedRange() {

@@ -1,5 +1,6 @@
 package alekseybykov.portfolio.guava.functional.predicates;
 
+import alekseybykov.portfolio.guava.PerformnceAuditorRule;
 import alekseybykov.portfolio.guava.predicates.LowerCasePredicate;
 import alekseybykov.portfolio.guava.predicates.UpperCasePredicate;
 import com.google.common.base.Predicate;
@@ -8,6 +9,7 @@ import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.Collection;
@@ -22,6 +24,8 @@ import static org.hamcrest.collection.IsEmptyCollection.empty;
 
 // Predicate interface is used for filtering
 public class PredicatesTest {
+	@Rule
+	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();
 
 	private static List<String> list;
 

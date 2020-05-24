@@ -1,6 +1,8 @@
 package alekseybykov.portfolio.guava.strings;
 
+import alekseybykov.portfolio.guava.PerformnceAuditorRule;
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Rule;
 import org.junit.Test;
 
 import static com.google.common.base.Strings.emptyToNull;
@@ -12,6 +14,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 public class StringsTest {
+	@Rule
+	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();
 
 	private String string = "string";
 

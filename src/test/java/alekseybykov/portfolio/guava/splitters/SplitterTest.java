@@ -1,9 +1,11 @@
 package alekseybykov.portfolio.guava.splitters;
 
+import alekseybykov.portfolio.guava.PerformnceAuditorRule;
 import com.google.common.base.Splitter;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.Matchers;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.everyItem;
@@ -12,6 +14,8 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 public class SplitterTest {
+	@Rule
+	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();
 
 	private static String string;
 

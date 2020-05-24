@@ -1,13 +1,17 @@
 package alekseybykov.portfolio.guava.collections.maps;
 
+import alekseybykov.portfolio.guava.PerformnceAuditorRule;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import org.junit.Rule;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public class BiMapTest {
+	@Rule
+	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAttemptToPutTheSameValue() {

@@ -1,8 +1,10 @@
 package alekseybykov.portfolio.guava.collections.lists;
 
+import alekseybykov.portfolio.guava.PerformnceAuditorRule;
 import alekseybykov.portfolio.guava.model.Book;
 import com.google.common.collect.Lists;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -13,6 +15,8 @@ import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.assertThat;
 
 public class ListsTest {
+	@Rule
+	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();
 
 	private static List<Book> bookList;
 	private static Book[] books;

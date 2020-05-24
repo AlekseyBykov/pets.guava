@@ -1,7 +1,9 @@
 package alekseybykov.portfolio.guava.collections.tables;
 
+import alekseybykov.portfolio.guava.PerformnceAuditorRule;
 import com.google.common.collect.HashBasedTable;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.Map;
@@ -11,6 +13,8 @@ import static junit.framework.TestCase.assertNull;
 import static junit.framework.TestCase.assertTrue;
 
 public class HashBasedTableTest {
+	@Rule
+	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();
 
 	private static HashBasedTable<Integer, Integer, String> table1;
 

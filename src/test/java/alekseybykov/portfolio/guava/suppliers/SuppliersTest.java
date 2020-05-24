@@ -1,7 +1,9 @@
 package alekseybykov.portfolio.guava.suppliers;
 
+import alekseybykov.portfolio.guava.PerformnceAuditorRule;
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -10,6 +12,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class SuppliersTest {
+	@Rule
+	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();
 
 	@Test
 	public void testMemoizeMethodCallWithoutExpiration() {

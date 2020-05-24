@@ -1,8 +1,10 @@
 package alekseybykov.portfolio.guava.joiners;
 
+import alekseybykov.portfolio.guava.PerformnceAuditorRule;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Maps;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.Map;
@@ -11,6 +13,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class MapJoinerTest {
+	@Rule
+	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();
 
 	private Map<String, String> map;
 

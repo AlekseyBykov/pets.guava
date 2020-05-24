@@ -1,5 +1,6 @@
 package alekseybykov.portfolio.guava.functional.functions;
 
+import alekseybykov.portfolio.guava.PerformnceAuditorRule;
 import alekseybykov.portfolio.guava.functions.RandomIntFunction;
 import alekseybykov.portfolio.guava.model.Book;
 import alekseybykov.portfolio.guava.model.Library;
@@ -11,6 +12,7 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -25,6 +27,8 @@ import static org.junit.Assert.assertNotEquals;
 
 // Function interface is used for transformations
 public class FunctionsTest {
+	@Rule
+	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();
 
 	private static Map libraries;
 

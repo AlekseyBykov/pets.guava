@@ -1,13 +1,17 @@
 package alekseybykov.portfolio.guava.collections.multimaps;
 
+import alekseybykov.portfolio.guava.PerformnceAuditorRule;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class ArrayListMultimapTest {
+	@Rule
+	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();
 
 	private static ArrayListMultimap<String, Integer> multimap = ArrayListMultimap.create();
 

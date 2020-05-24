@@ -1,8 +1,10 @@
 package alekseybykov.portfolio.guava.joiners;
 
+import alekseybykov.portfolio.guava.PerformnceAuditorRule;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -12,6 +14,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class JoinerTest {
+	@Rule
+	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();
 
 	private static List<String> strings;
 

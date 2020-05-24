@@ -1,5 +1,6 @@
 package alekseybykov.portfolio.guava.collections;
 
+import alekseybykov.portfolio.guava.PerformnceAuditorRule;
 import alekseybykov.portfolio.guava.model.Book;
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
@@ -7,6 +8,7 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.Iterables;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -17,6 +19,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class FluentIterableTest {
+	@Rule
+	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();
 
 	private static List<Book> bookList;
 	private static Book[] books;
