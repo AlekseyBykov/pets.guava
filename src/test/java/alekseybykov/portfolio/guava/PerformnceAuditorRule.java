@@ -5,8 +5,11 @@ import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PerformnceAuditorRule extends TestWatcher {
+	private static final Logger LOGGER = Logger.getLogger(PerformnceAuditorRule.class.getPackage().getName());
 	private Stopwatch stopwatch = Stopwatch.createUnstarted();
 
 	@Override
@@ -18,6 +21,6 @@ public class PerformnceAuditorRule extends TestWatcher {
 	protected void finished(Description description) {
 		stopwatch.stop();
 		long elapsed = stopwatch.elapsed(TimeUnit.MILLISECONDS);
-		System.out.println(String.format("Performance tracking: %s, %d ms", description.getMethodName(), elapsed));
+		LOGGER.log(Level.INFO, String.format("Performance tracking: %s, %d ms", description.getMethodName(), elapsed));
 	}
 }
