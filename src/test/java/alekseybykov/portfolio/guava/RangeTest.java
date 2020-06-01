@@ -7,6 +7,10 @@ import org.junit.Test;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 
+/**
+ * @author Aleksey Bykov
+ * @since 03.04.2020
+ */
 public class RangeTest {
 	@Rule
 	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();

@@ -7,6 +7,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * @author Aleksey Bykov
+ * @since 28.03.2020
+ */
 public class PreconditionsTest {
 	@Rule
 	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();

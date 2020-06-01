@@ -18,6 +18,10 @@ import static com.google.common.collect.Lists.newArrayList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
+/**
+ * @author Aleksey Bykov
+ * @since 30.03.2020
+ */
 public class FluentIterableTest {
 	@Rule
 	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();

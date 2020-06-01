@@ -1,5 +1,9 @@
 package alekseybykov.portfolio.guava.model;
 
+/**
+ * @author Aleksey Bykov
+ * @since 29.03.2020
+ */
 public class Book {
 
 	private String name;

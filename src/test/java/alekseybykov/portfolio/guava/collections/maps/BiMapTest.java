@@ -9,6 +9,10 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * @author Aleksey Bykov
+ * @since 31.03.2020
+ */
 public class BiMapTest {
 	@Rule
 	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();

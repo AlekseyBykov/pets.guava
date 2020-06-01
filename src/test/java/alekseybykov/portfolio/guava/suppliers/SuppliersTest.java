@@ -11,6 +11,10 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
+/**
+ * @author Aleksey Bykov
+ * @since 30.03.2020
+ */
 public class SuppliersTest {
 	@Rule
 	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();

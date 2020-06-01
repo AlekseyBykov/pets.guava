@@ -22,7 +22,12 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
 
-// Predicate interface is used for filtering
+/**
+ * Predicate interface is used for filtering
+ *
+ * @author Aleksey Bykov
+ * @since 30.03.2020
+ */
 public class PredicatesTest {
 	@Rule
 	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();

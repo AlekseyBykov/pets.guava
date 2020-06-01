@@ -10,6 +10,10 @@ import java.util.Set;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.assertThat;
 
+/**
+ * @author Aleksey Bykov
+ * @since 30.03.2020
+ */
 public class SetsTest {
 	@Rule
 	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();

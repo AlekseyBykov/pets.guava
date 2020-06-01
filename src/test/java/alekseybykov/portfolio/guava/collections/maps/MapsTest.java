@@ -22,6 +22,10 @@ import static com.google.common.collect.Lists.newArrayList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * @author Aleksey Bykov
+ * @since 30.03.2020
+ */
 public class MapsTest {
 	@Rule
 	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();

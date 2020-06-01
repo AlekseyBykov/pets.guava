@@ -14,6 +14,10 @@ import static com.google.common.collect.Lists.newArrayList;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.assertThat;
 
+/**
+ * @author Aleksey Bykov
+ * @since 30.03.2020
+ */
 public class ListsTest {
 	@Rule
 	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();

@@ -2,6 +2,10 @@ package alekseybykov.portfolio.guava.model;
 
 import java.util.List;
 
+/**
+ * @author Aleksey Bykov
+ * @since 29.03.2020
+ */
 public class Library {
 
 	private String name;

@@ -12,6 +12,10 @@ import java.util.Map;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * @author Aleksey Bykov
+ * @since 20.03.2020
+ */
 public class MapSplitterTest {
 	@Rule
 	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();

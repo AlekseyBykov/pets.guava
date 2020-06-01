@@ -12,6 +12,10 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNull;
 import static junit.framework.TestCase.assertTrue;
 
+/**
+ * @author Aleksey Bykov
+ * @since 02.04.2020
+ */
 public class HashBasedTableTest {
 	@Rule
 	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();

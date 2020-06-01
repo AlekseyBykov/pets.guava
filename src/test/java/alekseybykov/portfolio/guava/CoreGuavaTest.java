@@ -9,6 +9,10 @@ import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * @author Aleksey Bykov
+ * @since 29.03.2020
+ */
 public class CoreGuavaTest {
 
 	private static Function<Date, String> function;

@@ -13,6 +13,10 @@ import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
+/**
+ * @author Aleksey Bykov
+ * @since 20.03.2020
+ */
 public class SplitterTest {
 	@Rule
 	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();

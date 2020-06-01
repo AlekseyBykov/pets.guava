@@ -10,6 +10,10 @@ import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * @author Aleksey Bykov
+ * @since 31.03.2020
+ */
 public class HashMultimapTest {
 	@Rule
 	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();

@@ -9,6 +9,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * @author Aleksey Bykov
+ * @since 31.03.2020
+ */
 public class ArrayListMultimapTest {
 	@Rule
 	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();

@@ -4,6 +4,10 @@ import com.google.common.base.Function;
 
 import java.util.Random;
 
+/**
+ * @author Aleksey Bykov
+ * @since 30.03.2020
+ */
 public class RandomIntFunction implements Function<Integer, Integer> {
 
 	@Override

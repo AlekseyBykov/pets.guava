@@ -25,7 +25,12 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
-// Function interface is used for transformations
+/**
+ * Function interface is used for transformations
+ *
+ * @author Aleksey Bykov
+ * @since 29.03.2020
+ */
 public class FunctionsTest {
 	@Rule
 	public PerformnceAuditorRule performnceAuditor = new PerformnceAuditorRule();
